@@ -10,12 +10,12 @@
     <div class="species__background">
       <div class="speciesDescription">
         <h1 class="speciesDescription__title">
-          <span class="underline">{{info.name}}</span>
+          <span class="underline">{{ info.name }}</span>
         </h1>
 
         <div class="speciesInformation">
           <div class="speciesInformation__description">
-            <p>{{info.description}}</p>
+            <p>{{ info.description }}</p>
           </div>
           <div class="speciesInformation__image">
             <img :src="info.image_link" :alt="image_alt" />
@@ -29,7 +29,7 @@
             <div>
               <p>
                 <span class="underline">Habitude Alimentaire:</span>
-                {{info.food}}
+                {{ info.food }}
               </p>
             </div>
             <img src="@/img/Species/food.svg" alt />
@@ -38,7 +38,7 @@
             <div>
               <p>
                 <span class="underline">Reproduction:</span>
-                {{info.reproduction}}
+                {{ info.reproduction }}
               </p>
             </div>
             <img src="@/img/Species/reproduction1.svg" alt />
@@ -47,7 +47,7 @@
             <div>
               <p>
                 <span class="underline">Zone geographique:</span>
-                {{info.life_area}}
+                {{ info.life_area }}
               </p>
             </div>
             <img src="@/img/Species/geo.svg" alt />
@@ -62,7 +62,7 @@
             <div>
               <p>
                 <span class="underline">Durée de vie:</span>
-                {{info.life_time}} ans
+                {{ info.life_time }} ans
               </p>
             </div>
           </div>
@@ -71,7 +71,7 @@
 
             <p>
               <span class="underline">Profondeur:</span>
-              {{info.deep_min}} - {{info.deep_max}}
+              {{ info.deep_min }} - {{ info.deep_max }}
             </p>
           </div>
           <div class="size">
@@ -79,7 +79,7 @@
             <div>
               <p>
                 <span class="underline">Poids/Taille:</span>
-                {{info.weight}}kg / {{info.size}}cm
+                {{ info.weight }}kg / {{ info.size }}cm
               </p>
             </div>
           </div>
@@ -89,12 +89,15 @@
         <div class="more__youKnow">
           <h2>Le saviez-vous?</h2>
           <p>
-            N'as jamais été inclus dans le formulaire, arrêtons de vous raconter des bêtises :)
+            N'as jamais été inclus dans le formulaire, arrêtons de vous raconter
+            des bêtises :)
           </p>
         </div>
       </div>
       <div class="backbtn">
-        <router-link to="/mammiferes/0/150"><img src="@/img/back.svg" alt /></router-link>
+        <router-link to="/mammiferes/0/150"
+          ><img src="@/img/back.svg" alt
+        /></router-link>
       </div>
     </div>
   </div>
@@ -107,28 +110,31 @@ import axios from "axios";
 export default {
   name: "template",
   components: {
-    headr
+    headr,
   },
 
   data() {
     return {
-      info: null
+      info: null,
     };
   },
   mounted() {
-
-     var id = this.$route.params.id;
+    var id = this.$route.params.id;
     axios
       .get(
         `https://cors-anywhere.zelazna.fr/https://pal.romain-feregotto.fr/?url=getone&id=${id}`,
         {
           method: "GET",
-          headers: { Authorization: "Basic " + btoa("admin:admin") }
+          headers: { Authorization: "Basic " + btoa("admin:admin") },
         }
       )
-      .then(response => (this.info = response.data.results.species)); 
-  }
+      .then((response) => (this.info = response.data.results.species));
+  },
 };
 </script>
 
-<style>
+<style lang="css" scoped>
+body {
+  overflow-x: hidden;
+}
+</style>
